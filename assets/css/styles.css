@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #171717;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.revista {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.portada {
+  position: relative;
+  grid-area: 1/1;
+  z-index: 2;
+  width: 100%;
+  max-width: 430px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #252525;
+  isolation: isolate;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  animation: revista-por-abrir 3s ease-in-out infinite;
+}
+.portada__fotografia {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.portada__imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.portada__titulo {
+  position: absolute;
+  z-index: 2;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(4.5rem, 9vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+.portada__cabello {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.portada__datos {
+  position: absolute;
+  z-index: 4;
+  right: 6%;
+  top: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+.portada__nombre {
+  position: relative;
+  top: 150px;
+  margin: 10px 0 0;
+  font-size: clamp(0.5rem, 8vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1;
+}
+.portada__fecha {
+  position: relative;
+  margin: 10px 0 0;
+  top: 140px;
+  font-family: Arial, sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+}
+.portada__pasar {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  width: 55px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.portada__pasar span {
+  display: none;
+}
+.portada--pasando {
+  animation: pasar-revista 0.65s ease-in-out forwards;
+}
+
+@keyframes revista-por-abrir {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  35% {
+    transform: rotateY(-7deg);
+  }
+  65% {
+    transform: rotateY(-13deg);
+  }
+}
+@keyframes pasar-revista {
+  to {
+    transform: rotateY(-100deg);
+  }
+}
+@media (min-width: 768px) {
+  .portada,
+  .pagina-detalles {
+    max-width: 480px;
+  }
+}
+.pagina-detalles {
+  position: relative;
+  grid-area: 1/1;
+  z-index: 1;
+  width: 99%;
+  max-width: 430px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #ffffff;
+  bottom: 5px;
+  transform: translate(8px, 8px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+.pagina-detalles__imagen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/*# sourceMappingURL=styles.css.map */
