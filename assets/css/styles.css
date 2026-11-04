@@ -10,8 +10,9 @@ body {
 }
 
 body {
-  background: #171717;
+  background-image: url("../img/fondo-portada.png");
   font-family: "Cormorant Garamond", serif;
+  background-size: cover;
 }
 
 .revista {
