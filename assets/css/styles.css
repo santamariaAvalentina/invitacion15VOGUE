@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 html,
@@ -120,7 +121,17 @@ body {
   display: none;
 }
 .portada--pasando {
-  animation: pasar-revista 0.65s ease-in-out forwards;
+  animation: pasar-revista 0.8s ease-in-out forwards;
+}
+.portada::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(to left, rgb(8, 20, 0), rgba(0, 0, 0, 0.527), transparent);
 }
 
 @keyframes revista-por-abrir {
@@ -136,7 +147,8 @@ body {
 }
 @keyframes pasar-revista {
   to {
-    transform: rotateY(-100deg);
+    transform: rotateY(-180deg);
+    left: 10px;
   }
 }
 @media (min-width: 768px) {
@@ -154,9 +166,6 @@ body {
   aspect-ratio: 3/4;
   overflow: hidden;
   background: #ffffff;
-  bottom: 5px;
-  transform: translate(8px, 8px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 .pagina-detalles__imagen {
   position: absolute;
@@ -165,6 +174,200 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 10px;
+}
+.pagina-detalles::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(to right, rgb(8, 20, 0), rgba(0, 0, 0, 0.527), transparent);
+  pointer-events: none;
+}
+
+.pagina-detalles__contenido {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 25px;
+  text-align: center;
+  color: #171717;
+}
+.pagina-detalles__edicion {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+.pagina-detalles__nombre {
+  font-family: "Bodoni Moda", serif;
+  font-size: clamp(38px, 10vw, 58px);
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0;
+}
+.pagina-detalles__titulo {
+  font-family: "Bodoni Moda", serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  margin-top: 18px;
+}
+.pagina-detalles__separador {
+  width: 45px;
+  height: 1px;
+  background: #171717;
+  margin: 30px 0;
+}
+.pagina-detalles__frase {
+  max-width: 260px;
+  font-family: "Bodoni Moda", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+.pagina-detalles__invitacion {
+  font-family: "Bodoni Moda", serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 28px;
+}
+.pagina-detalles__mensaje {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  font-style: italic;
+  max-width: 230px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.pagina-detalles {
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  animation: revista-por-abrir 3s ease-in-out infinite;
+}
+
+.pagina-detalles--pasando {
+  animation: pasar-pagina-interior 0.8s ease-in-out forwards;
+}
+
+@keyframes pasar-pagina-interior {
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+.pagina-evento {
+  position: relative;
+  grid-area: 1/1;
+  z-index: 0;
+  width: 100%;
+  max-width: 430px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background-image: url("../img/salon.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f8f2f2;
+}
+.pagina-evento__contenido {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
+}
+.pagina-evento__titulo {
+  font-family: "Bodoni Moda", serif;
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0;
+}
+.pagina-evento__fecha {
+  font-family: "Bodoni Moda", serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  margin: 25px 0 5px;
+}
+.pagina-evento__anio {
+  font-family: "Bodoni Moda", serif;
+  font-size: 48px;
+  font-weight: 400;
+  margin: 0;
+}
+.pagina-evento__separador {
+  width: 45px;
+  height: 1px;
+  background: #171717;
+  margin: 25px 0;
+}
+.pagina-evento__contador-titulo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+.pagina-evento__contador {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.pagina-evento__contador div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pagina-evento__contador span {
+  font-family: "Bodoni Moda", serif;
+  font-size: 27px;
+}
+.pagina-evento__contador small {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.pagina-evento__salon {
+  font-family: "Bodoni Moda", serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin-top: 35px;
+}
+.pagina-evento__ubicacion {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  border: 1px solid #171717;
+  color: #171717;
+  text-decoration: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  transition: all 0.3s ease;
+}
+.pagina-evento__ubicacion:hover {
+  background: #171717;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .pagina-evento {
+    max-width: 480px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
