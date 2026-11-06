@@ -20,7 +20,7 @@ body {
 body {
     background-image: url("../img/fondo-portada.png");
     font-family: "Cormorant Garamond", serif;
-    background-size: cover;  
+    background-size: cover;
 }
 
 // REVISTA
@@ -145,32 +145,31 @@ body {
     }
 
     // PASAR LA PÁGINA AL HACER CLIC
-    
-        &--pasando {
-    animation: pasar-revista 0.8s ease-in-out forwards;
-}
-&::before {
-    content: "";
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 100%;
-    
 
-    background: linear-gradient(
-        to left,
-        rgb(8, 20, 0),
-        rgba(0, 0, 0, 0.527),
-        transparent
-        
-    );
+    &--pasando {
+        animation: pasar-revista 0.8s ease-in-out forwards;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 100%;
+
+
+        background: linear-gradient(to left,
+                rgb(8, 20, 0),
+                rgba(0, 0, 0, 0.527),
+                transparent);
     }
 }
 
 // ANIMACIÓN CONTINUA DE APERTURA
 @keyframes revista-por-abrir {
+
     0%,
     100% {
         transform: rotateY(0deg);
@@ -224,26 +223,27 @@ body {
         object-position: center;
         border-radius: 10px;
     }
+
     &::before {
-    content: "";
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 100%;
+        content: "";
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 100%;
 
-    background: linear-gradient(
-        to right,
-        rgb(8, 20, 0),
-        rgba(0, 0, 0, 0.527),
-        transparent
-    );
+        background: linear-gradient(to right,
+                rgb(8, 20, 0),
+                rgba(0, 0, 0, 0.527),
+                transparent);
 
-    pointer-events: none;
+        pointer-events: none;
+    }
 }
-}
-// PRIMERA PÁGINA INTERIOR - ESTILO VOGUE
+
+
+// PRIMERA PÁGINA INTERIOR - EDITORIAL ALTA COSTURA
 
 .pagina-detalles {
 
@@ -251,77 +251,93 @@ body {
         position: absolute;
         inset: 0;
         z-index: 2;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        padding: 35px 25px;
-        text-align: center;
+        display: block;
+        padding: 0;
         color: #171717;
     }
 
-    &__edicion {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 9px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        margin-bottom: 35px;
-    }
-
+    // NOMBRE PRINCIPAL
     &__nombre {
+        position: absolute;
+        top: 21%;
+        left: 9%;
+        width: 85%;
+
         font-family: "Bodoni Moda", serif;
-        font-size: clamp(38px, 10vw, 58px);
+        font-size: clamp(43px, 11vw, 59px);
         font-weight: 400;
         letter-spacing: 2px;
         line-height: 1;
+
+        text-align: left;
         margin: 0;
     }
 
+    // SUBTÍTULO EDITORIAL
     &__titulo {
+        position: absolute;
+        top: 31%;
+        left: 10%;
+
         font-family: "Bodoni Moda", serif;
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 400;
         letter-spacing: 5px;
-        margin-top: 18px;
-    }
 
-    &__separador {
-        width: 45px;
-        height: 1px;
-        background: #171717;
-        margin: 30px 0;
-    }
-
-    &__frase {
-        max-width: 260px;
-        font-family: "Bodoni Moda", serif;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.7;
-        letter-spacing: 0.3px;
+        text-align: left;
         margin: 0;
     }
 
-   
+    // FRASE PRINCIPAL
+    &__frase {
+        position: absolute;
+        top: 43%;
+        left: 10%;
+        max-width: 75%;
 
-&__invitacion {
-    font-family: "Bodoni Moda", serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-top: 28px;
+        font-family: "Bodoni Moda", serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.7;
+        letter-spacing: 0.2px;
+
+        text-align: left;
+        margin: 0;
+    }
+
+    // INVITACIÓN
+    &__invitacion {
+        position: absolute;
+        top: 61%;
+        left: 10%;
+
+        font-family: "Bodoni Moda", serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 5px;
+
+        text-align: left;
+        margin: 0;
+    }
+
+    // MENSAJE PERSONAL
+    &__mensaje {
+        position: absolute;
+        top: 68%;
+        left: 10%;
+        max-width: 65%;
+
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 1.6;
+
+        text-align: left;
+        margin: 0;
+    }
 }
 
-&__mensaje {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 13px;
-    font-style: italic;
-    max-width: 230px;
-    line-height: 1.5;
-    margin-top: 10px;
-}
-}
+
 // Movimiento sutil de la composición editorial
 
 // MOVIMIENTO CONTINUO IGUAL AL DE LA PORTADA
@@ -344,6 +360,7 @@ body {
     }
 }
 
+
 // SEGUNDA PÁGINA - THE CELEBRATION
 
 .pagina-evento {
@@ -354,112 +371,257 @@ body {
     max-width: 430px;
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    background-image: url("../img/salon.png");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-color: #f8f2f2;
+    background: #f8f7f4;
+    color: #171717;
+    isolation: isolate;
+    
+       
 
-    &__contenido {
+    // FOTOGRAFÍA DEL SALÓN
+    &__fotografia {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        
+    }
+
+    &__imagen {
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 30px 20px;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        filter: grayscale(100%);
+        
+    }
+
+    // DIFUMINADO EDITORIAL
+    &__degradado {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,0.99) 0%,
+                rgba(255,255,255,0.96) 18%,
+                rgba(255,255,255,0.82) 34%,
+                rgba(255,255,255,0.40) 53%,
+                rgba(255,255,255,0.04) 76%,
+                transparent 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(255,255,255,0.92) 0%,
+                rgba(255,255,255,0.35) 20%,
+                transparent 43%
+            );
+    }
+
+    // CONTENIDO GENERAL
+    &__contenido {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
         text-align: center;
     }
 
-  
-
-    &__titulo {
-        font-family: "Bodoni Moda", serif;
-        font-size: 29px;
-        font-weight: 400;
-        letter-spacing: 2px;
+    // ENCABEZADO
+    &__encabezado {
+        position: absolute;
+        top: 25%;
+        width: 84%;
         margin: 0;
+
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(13px, 4vw, 18px);
+        letter-spacing: 6px;
+        font-weight: 400;
+        color: #f06666;
     }
 
+    // FECHA
     &__fecha {
-        font-family: "Bodoni Moda", serif;
-        font-size: 15px;
-        letter-spacing: 3px;
-        margin: 25px 0 5px;
-    }
-
-    &__anio {
-        font-family: "Bodoni Moda", serif;
-        font-size: 48px;
-        font-weight: 400;
+        position: absolute;
+        top: 45%;
+        left: 8%;
+        width: 48%;
         margin: 0;
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(11px, 3.5vw, 15px);
+        letter-spacing: 3px;
+        color: #171717;
     }
 
-    &__separador {
-        width: 45px;
-        height: 1px;
-        background: #171717;
-        margin: 25px 0;
+    // AÑO GIGANTE
+    &__anio {
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        width: 55%;
+        margin: 0;
+
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(65px, 18vw, 88px);
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: -5px;
+        color: #111111;
     }
 
+    // NOMBRE DEL SALÓN
+    &__salon {
+        position: absolute;
+        top: 55%;
+        right: 3%;
+        width: 65%;
+        margin: 0;
+
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(13px, 4vw, 18px);
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: #f7f4f4;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.65);
+    }
+
+    // TEXTO DEL CONTADOR
     &__contador-titulo {
+        position: absolute;
+        bottom: 27%;
+        left: 5%;
+        width: 90%;
+        margin: 0;
+
         font-family: "Cormorant Garamond", serif;
         font-size: 10px;
         letter-spacing: 3px;
-        margin-bottom: 20px;
+        color: #f1eaea;
     }
 
-    &__contador {
+    // CONTADOR EDITORIAL
+    
+&__contador-titulo {
+    position: absolute;
+    bottom: 29%;
+    left: 5%;
+    width: 90%;
+    margin: 0;
+    text-align: center;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #333333;
+}
+
+&__contador {
+    position: absolute;
+    bottom: 15%;
+    left: 7%;
+    width: 86%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+
+    padding: 10px 0;
+    background: transparent;
+    color: #171717;
+    box-shadow: none;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &:not(:last-child) {
+            border-right: 1px solid rgba(23,23,23,0.4);
+        }
+    }
+
+    span {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(24px, 7vw, 31px);
+        line-height: 1.2;
+    }
+
+    small {
+        margin-top: 5px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+}
+
+
+    // BOTÓN DE UBICACIÓN
+    &__ubicacion {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+
         display: flex;
         justify-content: center;
-        gap: 15px;
+        align-items: center;
 
-        div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        width: 65%;
+        padding: 12px 10px;
 
-        span {
-            font-family: "Bodoni Moda", serif;
-            font-size: 27px;
-        }
-
-        small {
-            font-family: "Cormorant Garamond", serif;
-            font-size: 8px;
-            letter-spacing: 1px;
-        }
-    }
-
-    &__salon {
-        font-family: "Bodoni Moda", serif;
-        font-size: 16px;
-        letter-spacing: 3px;
-        margin-top: 35px;
-    }
-
-    &__ubicacion {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 12px 25px;
         border: 1px solid #171717;
+        border-radius: 30px;
+
+        background: rgba(29, 28, 28, 0.2);
         color: #171717;
         text-decoration: none;
+
         font-family: "Cormorant Garamond", serif;
         font-size: 11px;
         letter-spacing: 3px;
-        transition: all 0.3s ease;
+
+        transition: background 0.3s ease;
 
         &:hover {
-            background: #171717;
-            color: #ffffff;
+            background: rgba(255,255,255,0.75);
         }
     }
 }
 
+// ESCRITORIO
 @media (min-width: 768px) {
     .pagina-evento {
         max-width: 480px;
+    }
+}
+
+// PÁGINA 2 - MOVIMIENTO DE REVISTA
+
+.pagina-evento {
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    // Sin movimiento automático mientras está detrás
+    animation: none;
+}
+
+// ACTIVAR AL MOSTRAR LA PÁGINA 2
+.pagina-evento--activa {
+    animation: revista-por-abrir 3s ease-in-out infinite;
+}
+
+// GIRO AL PASAR LA PÁGINA
+.pagina-evento--pasando {
+    animation: pasar-pagina-evento 0.8s ease-in-out forwards;
+}
+
+@keyframes pasar-pagina-evento {
+    to {
+        transform: rotateY(-180deg);
     }
 }
