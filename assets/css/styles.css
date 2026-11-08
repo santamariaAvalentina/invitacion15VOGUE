@@ -666,7 +666,7 @@ body {
 
 @keyframes deslizar-revista-final {
   to {
-    transform: translateX(350px);
+    transform: translateX(360px);
   }
 }
 @media (max-width: 767px) {
