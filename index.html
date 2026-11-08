@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,14 +13,11 @@
 
     <title>Martina | Mis Quince</title>
 
-    <!-- Tipografía editorial estilo Vogue -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&display=swap"
         rel="stylesheet">
 
-    <!-- Estilos -->
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -30,148 +28,225 @@
         <!-- PORTADA -->
         <section class="portada" id="portada">
 
-            <!-- Fotografía principal -->
-            <div class="portada__fotografia">
-                <img src="assets/img/portada.png" alt="Martina en su portada de quince años" class="portada__imagen">
+            <div class="hoja__frente portada__frente">
+
+                <div class="portada__fotografia">
+                    <img src="assets/img/portada.png"
+                        alt="Martina en su portada de quince años"
+                        class="portada__imagen">
+                </div>
+
+                <h1 class="portada__titulo">
+                    MIS QUINCE
+                </h1>
+
+                <div class="portada__datos">
+                    <h2 class="portada__nombre">Martina</h2>
+                    <p class="portada__fecha">22/01/2027</p>
+                </div>
+
+                <button class="portada__pasar" id="pasarPagina"
+                    type="button" aria-label="Pasar a la siguiente página">
+                    <span></span>
+                </button>
+
             </div>
 
-            <!-- Título vertical -->
-            <h1 class="portada__titulo">
-                MIS QUINCE
-            </h1>
-
-            <!-- Nombre y fecha -->
-            <div class="portada__datos">
-                <h2 class="portada__nombre">
-                    Martina
-                </h2>
-
-                <p class="portada__fecha">
-                    22/01/2027
-                </p>
-            </div>
-
-            <!-- Botón para pasar la página -->
-            <button class="portada__pasar" id="pasarPagina" type="button" aria-label="Pasar a la siguiente página">
-                <span></span>
-            </button>
+            <div class="hoja__reverso pagina-confirmacion__reverso">
+    <img
+        src="assets/img/reverso.png"
+        alt="Tu invitación by Tu Galaxia Digital"
+        class="pagina-confirmacion__reverso-imagen"
+    >
+</div>
 
         </section>
 
-        <!-- PRIMERA PÁGINA INTERIOR -->
+
+        <!-- DETALLES -->
         <section class="pagina-detalles" id="detalles">
 
-            <img src="assets/img/detalles.png" alt="" class="pagina-detalles__imagen">
+            <div class="hoja__frente pagina-detalles__frente">
 
-            <!-- Composición editorial -->
-            <div class="pagina-detalles__contenido">
+                <img src="assets/img/detalles.png" alt=""
+                    class="pagina-detalles__imagen">
 
-                <h2 class="pagina-detalles__nombre">
-                    MARTINA
-                </h2>
+                <div class="pagina-detalles__contenido">
 
-                <p class="pagina-detalles__titulo">
-                    THE NIGHT EDITION
-                </p>
+                    <h2 class="pagina-detalles__nombre">
+                        MARTINA
+                    </h2>
 
+                    <p class="pagina-detalles__titulo">
+                        THE NIGHT EDITION
+                    </p>
 
-                <p class="pagina-detalles__frase">
-                    Una celebración extraordinaria...
-                    Una noche inolvidable.....
-                </p>
-                
+                    <p class="pagina-detalles__frase">
+                        Una celebración extraordinaria...
+                        Una noche inolvidable.....
+                    </p>
 
-                <p class="pagina-detalles__mensaje">
-                    Reservamos un lugar especial para vos.
-                </p>
+                    <p class="pagina-detalles__mensaje">
+                        Reservamos un lugar especial para vos.
+                    </p>
+
+                </div>
 
             </div>
+
+            <div class="hoja__reverso pagina-confirmacion__reverso">
+    <img
+        src="assets/img/reverso.png"
+        alt="Tu invitación by Tu Galaxia Digital"
+        class="pagina-confirmacion__reverso-imagen"
+    >
+</div>
 
         </section>
 
-<
-<!-- SEGUNDA PÁGINA INTERIOR -->
-<section class="pagina-evento" id="pagina2">
 
-    <!-- Fotografía del salón -->
-    <div class="pagina-evento__fotografia">
-        <img
-            src="assets/img/evento.png"
-            alt="Salón Altos Evento"
-            class="pagina-evento__imagen"
-        >
-    </div>
+        <!-- EVENTO -->
+        <section class="pagina-evento" id="pagina2">
 
-    <!-- Capa para integrar la fotografía -->
-    <div class="pagina-evento__degradado"></div>
+            <div class="hoja__frente pagina-evento__frente">
 
-    <!-- Contenido editorial -->
-    <div class="pagina-evento__contenido">
+                <div class="pagina-evento__fotografia">
+                    <img src="assets/img/evento.png"
+                        alt="Salón Altos Evento"
+                        class="pagina-evento__imagen">
+                </div>
 
-        <p class="pagina-evento__encabezado">
-            THE CELEBRATION
-        </p>
+                <div class="pagina-evento__degradado"></div>
 
-        <p class="pagina-evento__fecha">
-            22 DE ENERO
-        </p>
+                <div class="pagina-evento__contenido">
 
-        <h2 class="pagina-evento__anio">
-            2027
-        </h2>
+                    <p class="pagina-evento__encabezado">
+                        THE CELEBRATION
+                    </p>
 
-        <p class="pagina-evento__salon">
-            TE ESPERAMOS
-        </p>
+                    <p class="pagina-evento__fecha">
+                        22 DE ENERO
+                    </p>
 
-        <p class="pagina-evento__contador-titulo">
-            LA CUENTA REGRESIVA COMIENZA
-        </p>
+                    <h2 class="pagina-evento__anio">
+                        2027
+                    </h2>
 
-        <!-- CONTADOR -->
-        <div class="pagina-evento__contador" id="contador">
+                    <p class="pagina-evento__salon">
+                        TE ESPERAMOS
+                    </p>
 
-            <div>
-                <span id="dias">00</span>
-                <small>DÍAS</small>
+                    <p class="pagina-evento__contador-titulo">
+                        LA CUENTA REGRESIVA COMIENZA
+                    </p>
+
+                    <div class="pagina-evento__contador" id="contador">
+
+                        <div>
+                            <span id="dias">00</span>
+                            <small>DÍAS</small>
+                        </div>
+
+                        <div>
+                            <span id="horas">00</span>
+                            <small>HORAS</small>
+                        </div>
+
+                        <div>
+                            <span id="minutos">00</span>
+                            <small>MINUTOS</small>
+                        </div>
+
+                        <div>
+                            <span id="segundos">00</span>
+                            <small>SEGUNDOS</small>
+                        </div>
+
+                    </div>
+
+                    <a class="pagina-evento__ubicacion"
+                        href="https://maps.app.goo.gl/B1DLFRH6KfibvDQp9"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        VER UBICACIÓN
+                    </a>
+
+                </div>
+
             </div>
 
-            <div>
-                <span id="horas">00</span>
-                <small>HORAS</small>
+            <<div class="hoja__reverso pagina-confirmacion__reverso">
+    <img
+        src="assets/img/reverso.png"
+        alt="Tu invitación by Tu Galaxia Digital"
+        class="pagina-confirmacion__reverso-imagen"
+    >
+</div>
+
+        </section>
+
+
+        <!-- CONFIRMACIÓN -->
+        <section class="pagina-confirmacion" id="confirmacion">
+
+            <div class="hoja__frente pagina-confirmacion__frente">
+
+                <img src="assets/img/confirmacion.png" alt=""
+                    class="pagina-confirmacion__imagen">
+
+                <div class="pagina-confirmacion__contenido">
+
+                    <h2 class="pagina-confirmacion__titulo">
+                        ¿NOS ACOMPAÑÁS?
+                    </h2>
+
+                    <p class="pagina-confirmacion__frase">
+                        Me encantaría compartir este día
+                        tan especial con vos.
+                    </p>
+
+                    <p class="pagina-confirmacion__invitacion">
+                        CONFIRMÁ TU ASISTENCIA
+                    </p>
+
+                    <div class="pagina-confirmacion__botones">
+
+                        <a href="https://wa.me/5493512290218?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20a%20los%2015%20a%C3%B1os%20de%20Martina%2C%20el%2022%20de%20enero%20de%202027%20Gracias%20por%20la%20Invitacion."
+                            class="pagina-confirmacion__boton"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            SÍ, AHÍ ESTARÉ
+                        </a>
+
+                        <a href="https://wa.me/5493512290218?text=%C2%A1Hola!%20Lamentablemente%20no%20podr%C3%A9%20asistir%20a%20los%2015%20a%C3%B1os%20de%20Martina%20Gracias%20por%20la%20Invitacion."
+                            class="pagina-confirmacion__boton"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            NO PODRÉ ASISTIR
+                        </a>
+
+                    </div>
+
+                    <p class="pagina-confirmacion__whatsapp"></p>
+
+
+                </div>
+
             </div>
 
-            <div>
-                <span id="minutos">00</span>
-                <small>MINUTOS</small>
-            </div>
+            <div class="hoja__reverso pagina-confirmacion__reverso">
+    <img
+        src="assets/img/tu-invitacion.png"
+        alt="Tu invitación by Tu Galaxia Digital"
+        class="pagina-confirmacion__reverso-imagen"
+    >
+</div>
 
-            <div>
-                <span id="segundos">00</span>
-                <small>SEGUNDOS</small>
-            </div>
-
-        </div>
-
-        <!-- UBICACIÓN -->
-        <a
-            class="pagina-evento__ubicacion"
-            href="https://maps.app.goo.gl/B1DLFRH6KfibvDQp9"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            VER UBICACIÓN
-        </a>
-
-    </div>
-
-</section>
+        </section>
 
     </main>
 
-    <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
