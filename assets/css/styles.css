@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   border-radius: 5px;
@@ -672,6 +673,42 @@ body {
 @media (max-width: 767px) {
   .revista.revista--centrada-final {
     animation: deslizar-revista-final 1.2s ease-in-out forwards;
+  }
+}
+/* ========================================
+   GIRAR LAS PÁGINAS HACIA ATRÁS
+======================================== */
+@keyframes volver-pagina {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+.portada--volviendo,
+.pagina-detalles--volviendo,
+.pagina-evento--volviendo,
+.pagina-confirmacion--volviendo {
+  animation: volver-pagina 0.8s ease-in-out forwards;
+  z-index: 5 !important;
+}
+
+/* ========================================
+   DEVOLVER LA REVISTA A SU POSICIÓN INICIAL
+   EN MÓVILES
+======================================== */
+@keyframes deslizar-revista-inicial {
+  from {
+    transform: translateX(360px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 767px) {
+  .revista.revista--volviendo-final {
+    animation: deslizar-revista-inicial 1.2s ease-in-out forwards;
   }
 }
 

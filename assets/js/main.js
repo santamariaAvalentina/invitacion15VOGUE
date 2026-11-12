@@ -2,29 +2,218 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // ========================================
-    // ELEMENTOS
+    // ELEMENTOS Y ESTADO DE LA REVISTA
     // ========================================
 
-    const boton = document.querySelector("#pasarPagina");
     const revista = document.querySelector(".revista");
-    const portada = document.querySelector("#portada");
-    const detalles = document.querySelector("#detalles");
-    const paginaEvento = document.querySelector("#pagina2");
-    const confirmacion = document.querySelector("#confirmacion");
+    const boton = document.querySelector("#pasarPagina");
+
+    const paginas = [
+        document.querySelector("#portada"),
+        document.querySelector("#detalles"),
+        document.querySelector("#pagina2"),
+        document.querySelector("#confirmacion")
+    ];
+
+    const clases = [
+        "portada",
+        "pagina-detalles",
+        "pagina-evento",
+        "pagina-confirmacion"
+    ];
+
+    // 0 = portada
+    // 1 = detalles
+    // 2 = evento
+    // 3 = confirmación
+    // 4 = reverso final
+
+    let paginaActual = 0;
+    let animando = false;
+    let ultimoDeslizamiento = 0;
+
+    const esMovil = window.matchMedia("(max-width: 767px)");
+
+
+    // ========================================
+    // OBTENER LA PÁGINA VISIBLE
+    // ========================================
+
+    function obtenerPaginaVisible() {
+        return paginas[Math.min(paginaActual, 3)];
+    }
+
+
+    // ========================================
+    // AVANZAR UNA PÁGINA
+    // ========================================
+
+    function avanzarPagina() {
+
+        if (animando || paginaActual >= 4) return;
+
+        const indice = paginaActual;
+        const pagina = paginas[indice];
+        const clase = clases[indice];
+
+        if (!pagina) return;
+
+        animando = true;
+
+        // Quitamos la animación de página activa
+        pagina.classList.remove(`${clase}--activa`);
+
+        // Iniciamos el giro
+        pagina.classList.add(`${clase}--pasando`);
+
+        if (boton && indice === 0) {
+            boton.disabled = true;
+        }
+    }
+
+
+    // ========================================
+    // RETROCEDER UNA PÁGINA
+    // ========================================
+
+    function retrocederPagina() {
+
+        if (animando || paginaActual <= 0) return;
+
+        // La hoja que tenemos que recuperar
+        const indice = paginaActual - 1;
+        const pagina = paginas[indice];
+        const clase = clases[indice];
+
+        if (!pagina) return;
+
+        animando = true;
+
+        // Quitamos la animación de la página visible
+        const paginaVisible = obtenerPaginaVisible();
+        const claseVisible = clases[Math.min(paginaActual, 3)];
+
+        paginaVisible.classList.remove(`${claseVisible}--activa`);
+
+        // Si estábamos en el reverso final,
+        // devolvemos también la revista a su posición original.
+        if (paginaActual === 4 && esMovil.matches && revista) {
+            revista.classList.remove("revista--centrada-final");
+            revista.classList.add("revista--volviendo-final");
+        }
+
+        // La hoja recuperada debe quedar por encima
+        pagina.style.zIndex = "5";
+
+        // Iniciamos el giro inverso
+        pagina.classList.add(`${clase}--volviendo`);
+    }
+
+
+    // ========================================
+    // FINALIZAR ANIMACIONES
+    // ========================================
+
+    paginas.forEach((pagina, indice) => {
+
+        if (!pagina) return;
+
+        const clase = clases[indice];
+
+        pagina.addEventListener("animationend", (e) => {
+
+            if (e.target !== pagina) return;
+
+            // ------------------------------------
+            // FINALIZAR AVANCE
+            // ------------------------------------
+
+            const animacionAvance = indice === 0
+                ? "pasar-revista"
+                : "pasar-pagina-interior";
+
+            if (
+                e.animationName === animacionAvance &&
+                pagina.classList.contains(`${clase}--pasando`)
+            ) {
+
+                pagina.classList.add(`${clase}--girada`);
+
+                paginaActual++;
+                animando = false;
+
+                // Activamos la siguiente página
+                if (paginaActual < 4) {
+
+                    const siguiente = paginas[paginaActual];
+                    const siguienteClase = clases[paginaActual];
+
+                    siguiente.classList.add(`${siguienteClase}--activa`);
+
+                } else {
+
+                    // Llegamos al reverso final
+                    if (esMovil.matches && revista) {
+                        revista.classList.add("revista--centrada-final");
+                    }
+
+                }
+
+                return;
+            }
+
+
+            // ------------------------------------
+            // FINALIZAR RETROCESO
+            // ------------------------------------
+
+            if (
+                e.animationName === "volver-pagina" &&
+                pagina.classList.contains(`${clase}--volviendo`)
+            ) {
+
+                pagina.classList.remove(
+                    `${clase}--volviendo`,
+                    `${clase}--girada`,
+                    `${clase}--pasando`
+                );
+
+                pagina.style.zIndex = "";
+
+                paginaActual--;
+                animando = false;
+
+                // Reactivamos la página a la que volvimos
+                if (paginaActual > 0 && paginaActual < 4) {
+
+                    const paginaAnterior = paginas[paginaActual];
+                    const claseAnterior = clases[paginaActual];
+
+                    paginaAnterior.classList.add(`${claseAnterior}--activa`);
+                }
+
+                // Volvimos a la portada
+                if (paginaActual === 0 && boton) {
+                    boton.disabled = false;
+                }
+            }
+
+        });
+
+    });
 
 
     // ========================================
     // DESLIZAMIENTO TÁCTIL
     // ========================================
 
-    function activarDeslizamiento(elemento, accion) {
-        if (!elemento) return;
+    if (revista) {
 
         let inicioX = 0;
         let inicioY = 0;
         let toqueInteractivo = false;
 
-        elemento.addEventListener("touchstart", (e) => {
+        revista.addEventListener("touchstart", (e) => {
 
             toqueInteractivo = !!e.target.closest("a, button");
 
@@ -35,7 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }, { passive: true });
 
-        elemento.addEventListener("touchend", (e) => {
+
+        revista.addEventListener("touchend", (e) => {
 
             if (toqueInteractivo || inicioX === 0) {
                 inicioX = 0;
@@ -47,11 +237,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const finalX = e.changedTouches[0].screenX;
             const finalY = e.changedTouches[0].screenY;
 
-            const diferenciaX = inicioX - finalX;
-            const diferenciaY = Math.abs(inicioY - finalY);
+            const diferenciaX = finalX - inicioX;
+            const diferenciaY = Math.abs(finalY - inicioY);
 
-            if (diferenciaX > 50 && diferenciaX > diferenciaY) {
-                accion();
+            if (
+                Math.abs(diferenciaX) > 50 &&
+                Math.abs(diferenciaX) > diferenciaY
+            ) {
+
+                ultimoDeslizamiento = Date.now();
+
+                if (diferenciaX < 0) {
+                    avanzarPagina();
+                } else {
+                    retrocederPagina();
+                }
             }
 
             inicioX = 0;
@@ -59,191 +259,75 @@ document.addEventListener("DOMContentLoaded", () => {
             toqueInteractivo = false;
 
         }, { passive: true });
+
     }
 
 
     // ========================================
-    // PORTADA
+    // CLIC EN LA MITAD DE LA PÁGINA
     // ========================================
 
-    function abrirRevista() {
+    if (revista) {
 
-        if (!portada) return;
+        revista.addEventListener("click", (e) => {
 
-        if (portada.classList.contains("portada--pasando")) {
-            return;
-        }
-
-        portada.classList.add("portada--pasando");
-
-        if (boton) {
-            boton.disabled = true;
-        }
-    }
-
-    if (boton) {
-        boton.addEventListener("click", abrirRevista);
-    }
-
-    activarDeslizamiento(portada, abrirRevista);
-
-
-    // ========================================
-    // FINALIZAR GIRO DE PORTADA
-    // ========================================
-
-    if (portada && detalles) {
-
-        portada.addEventListener("animationend", (e) => {
-
-            if (e.target !== portada) return;
-            if (e.animationName !== "pasar-revista") return;
-
-            portada.classList.add("portada--girada");
-            detalles.classList.add("pagina-detalles--activa");
-
-        });
-    }
-
-
-    // ========================================
-    // PÁGINA DE DETALLES
-    // ========================================
-
-    function pasarPaginaDetalles() {
-
-        if (!detalles) return;
-
-        if (detalles.classList.contains("pagina-detalles--pasando")) {
-            return;
-        }
-
-        detalles.classList.add("pagina-detalles--pasando");
-    }
-
-    activarDeslizamiento(detalles, pasarPaginaDetalles);
-
-    if (detalles) {
-
-        detalles.addEventListener("click", (e) => {
-
+            // No interferimos con enlaces ni botones
             if (e.target.closest("a, button")) return;
 
-            pasarPaginaDetalles();
+            // Evitamos que el clic posterior a un swipe
+            // provoque un segundo cambio de página.
+            if (Date.now() - ultimoDeslizamiento < 500) return;
 
-        });
-    }
+            const paginaVisible = obtenerPaginaVisible();
+            const paginaClickeada = e.target.closest(
+                ".portada, .pagina-detalles, .pagina-evento, .pagina-confirmacion"
+            );
 
+            // Solo actuamos sobre la página que está visible
+            if (!paginaClickeada || paginaClickeada !== paginaVisible) {
+                return;
+            }
 
-    // ========================================
-    // FINALIZAR GIRO DE DETALLES
-    // ========================================
+            const rect = paginaVisible.getBoundingClientRect();
+            const mitad = rect.left + rect.width / 2;
 
-    if (detalles && paginaEvento) {
-
-        detalles.addEventListener("animationend", (e) => {
-
-            if (e.target !== detalles) return;
-            if (e.animationName !== "pasar-pagina-interior") return;
-
-            detalles.classList.add("pagina-detalles--girada");
-            paginaEvento.classList.add("pagina-evento--activa");
-
-        });
-    }
-
-
-    // ========================================
-    // PÁGINA DEL EVENTO
-    // ========================================
-
-    function pasarPaginaEvento() {
-
-        if (!paginaEvento) return;
-
-        if (paginaEvento.classList.contains("pagina-evento--pasando")) {
-            return;
-        }
-
-        paginaEvento.classList.add("pagina-evento--pasando");
-    }
-
-    activarDeslizamiento(paginaEvento, pasarPaginaEvento);
-
-    if (paginaEvento) {
-
-        paginaEvento.addEventListener("click", (e) => {
-
-            if (e.target.closest("a, button")) return;
-
-            pasarPaginaEvento();
-
-        });
-    }
-
-
-    // ========================================
-    // FINALIZAR GIRO DEL EVENTO
-    // ========================================
-
-    if (paginaEvento && confirmacion) {
-
-        paginaEvento.addEventListener("animationend", (e) => {
-
-            if (e.target !== paginaEvento) return;
-            if (e.animationName !== "pasar-pagina-interior") return;
-
-            paginaEvento.classList.add("pagina-evento--girada");
-            confirmacion.classList.add("pagina-confirmacion--activa");
-
-        });
-    }
-
-
-    // ========================================
-    // PÁGINA DE CONFIRMACIÓN
-    // ========================================
-
-    function pasarPaginaConfirmacion() {
-
-        if (!confirmacion) return;
-
-        if (confirmacion.classList.contains("pagina-confirmacion--pasando")) {
-            return;
-        }
-
-        confirmacion.classList.add("pagina-confirmacion--pasando");
-    }
-
-    activarDeslizamiento(confirmacion, pasarPaginaConfirmacion);
-
-    if (confirmacion) {
-
-        confirmacion.addEventListener("click", (e) => {
-
-            if (e.target.closest("a, button")) return;
-
-            pasarPaginaConfirmacion();
-
-        });
-
-
-        // ========================================
-        // FINALIZAR ÚLTIMO GIRO
-        // ========================================
-
-        confirmacion.addEventListener("animationend", (e) => {
-
-            if (e.target !== confirmacion) return;
-            if (e.animationName !== "pasar-pagina-interior") return;
-
-            confirmacion.classList.add("pagina-confirmacion--girada");
-
-            if (window.matchMedia("(max-width: 767px)").matches && revista) {
-                revista.classList.add("revista--centrada-final");
+            if (e.clientX < mitad) {
+                retrocederPagina();
+            } else {
+                avanzarPagina();
             }
 
         });
+
+    }
+
+
+    // ========================================
+    // BOTÓN DE LA PORTADA
+    // ========================================
+
+    if (boton) {
+        boton.addEventListener("click", avanzarPagina);
+    }
+
+
+    // ========================================
+    // ANIMACIÓN DE REGRESO DE LA REVISTA
+    // ========================================
+
+    if (revista) {
+
+        revista.addEventListener("animationend", (e) => {
+
+            if (
+                e.target === revista &&
+                e.animationName === "deslizar-revista-inicial"
+            ) {
+                revista.classList.remove("revista--volviendo-final");
+            }
+
+        });
+
     }
 
 
@@ -263,9 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const diferencia = fechaEvento - ahora;
 
             if (diferencia <= 0) {
-
                 contador.innerHTML = "<p>¡Llegó el gran día!</p>";
-
                 return;
             }
 
