@@ -25,6 +25,7 @@ body {
   padding: 20px;
   perspective: 1400px;
   transform-style: preserve-3d;
+  touch-action: pan-y;
 }
 
 .hoja__frente,
