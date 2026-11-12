@@ -326,8 +326,9 @@ body {
   top: 25%;
   width: 84%;
   margin: 0;
+  right: 110px;
   font-family: "Bodoni Moda", serif;
-  font-size: clamp(13px, 4vw, 18px);
+  font-size: clamp(25px, 4vw, 18px);
   letter-spacing: 6px;
   font-weight: 400;
   color: #f06666;
