@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         revista.addEventListener("touchstart", (e) => {
 
-            toqueInteractivo = !!e.target.closest("a, button");
+            toqueInteractivo = !!e.target.closest("a, button:not(#pasarPagina)");
 
             if (toqueInteractivo) return;
 
@@ -307,9 +307,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========================================
 
     if (boton) {
-        boton.addEventListener("click", avanzarPagina);
-    }
+    boton.addEventListener("click", () => {
 
+        // Evitamos avanzar dos veces después de deslizar
+        if (Date.now() - ultimoDeslizamiento < 500) return;
+
+        avanzarPagina();
+
+    });
+}
 
     // ========================================
     // ANIMACIÓN DE REGRESO DE LA REVISTA
