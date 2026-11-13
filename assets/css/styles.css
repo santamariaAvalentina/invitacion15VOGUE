@@ -323,20 +323,22 @@ body {
 }
 .pagina-evento__encabezado {
   position: absolute;
-  top: 25%;
-  width: 84%;
-  margin: 0;
-  right: 110px;
+  width: fit-content;
+  right: 250px;
+  writing-mode: vertical-rl;
   font-family: "Bodoni Moda", serif;
-  font-size: clamp(25px, 4vw, 18px);
+  font-size: 25px;
   letter-spacing: 6px;
   font-weight: 400;
-  color: #f06666;
+  color: #f3eeee;
+  box-shadow: inset 0 -3px 3px 0 #afabab;
+  background: rgb(228, 101, 101);
+  padding: 8px 6px;
 }
 .pagina-evento__fecha {
   position: absolute;
-  top: 45%;
-  left: 8%;
+  top: 50%;
+  left: 20%;
   width: 48%;
   margin: 0;
   font-family: "Bodoni Moda", serif;
@@ -346,8 +348,8 @@ body {
 }
 .pagina-evento__anio {
   position: absolute;
-  top: 30%;
-  left: 5%;
+  top: 35%;
+  left: 15%;
   width: 55%;
   margin: 0;
   font-family: "Bodoni Moda", serif;
@@ -359,7 +361,7 @@ body {
 }
 .pagina-evento__salon {
   position: absolute;
-  top: 55%;
+  top: 60%;
   right: 3%;
   width: 65%;
   margin: 0;
